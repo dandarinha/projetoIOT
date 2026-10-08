@@ -14,7 +14,9 @@
         .brand { color: #0d6efd; }
         .nav-link { color: #495057; border-radius: .5rem; }
         .nav-link:hover, .nav-link.active { color: #0d6efd; background: #e9f2ff; }
-        .content { min-width: 0; }
+        .content { min-width: 0; user-select: none; cursor: default; }
+        .content input, .content textarea, .content select { user-select: text; cursor: text; }
+        .content button, .content a, .content label { cursor: pointer; }
         .stat-card { border: 0; box-shadow: 0 .125rem .5rem rgba(0,0,0,.06); }
     </style>
 </head>
