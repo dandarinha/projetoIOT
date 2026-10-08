@@ -7,36 +7,40 @@ use Livewire\Component;
 
 class AmbienteEdit extends Component
 {
-    public $nome;
-    public $descricao;
-    public $status;
+    public int $ambiente_id;
+    public string $nome = '';
+    public string $descricao = '';
+    public bool $status = true;
 
-    public function mount($id){
+    public function mount(int $id)
+    {
         $ambiente = Ambiente::find($id);
-        if ($ambiente == null){
-            session()->flash('error','Não encontrado');
-        return redirect()->route('ambiente.index');
+        if (!$ambiente) {
+            session()->flash('error', 'Ambiente não encontrado.');
+            return redirect()->route('ambiente.index');
         }
-      
+
+        $this->ambiente_id = $ambiente->id;
         $this->nome = $ambiente->nome;
-        $this->descricao = $ambiente->descricao;
+        $this->descricao = $ambiente->descricao ?? '';
         $this->status = $ambiente->status;
     }
 
-    public function update(){
+    protected function rules(): array
+    {
+        return ['nome' => ['required', 'string', 'max:255'], 'descricao' => ['nullable', 'string'], 'status' => ['boolean']];
+    }
+
+    public function update()
+    {
         $ambiente = Ambiente::find($this->ambiente_id);
-        if ($ambiente == null){
-            session()->flash('error','Não encontrado');
-        return redirect()->route('ambiente.index');
+        if (!$ambiente) {
+            session()->flash('error', 'Ambiente não encontrado.');
+            return redirect()->route('ambiente.index');
         }
 
-        $ambiente->nome = $this->nome;
-        $ambiente->descricao = $this->descricao;
-        $ambiente->status = $this->status;
-
-        $ambiente->save();
-
-        session()->flash('success','Atualizado');
+        $ambiente->update($this->validate());
+        session()->flash('success', 'Ambiente atualizado com sucesso.');
         return redirect()->route('ambiente.index');
     }
 

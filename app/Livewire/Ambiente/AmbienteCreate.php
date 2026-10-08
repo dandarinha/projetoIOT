@@ -7,19 +7,20 @@ use Livewire\Component;
 
 class AmbienteCreate extends Component
 {
-    public $nome;
-    public $descricao;
-    public $status;
+    public string $nome = '';
+    public string $descricao = '';
+    public bool $status = true;
+
+    protected function rules(): array
+    {
+        return ['nome' => ['required', 'string', 'max:255'], 'descricao' => ['nullable', 'string'], 'status' => ['boolean']];
+    }
 
     public function store()
     {
-        Ambiente::create([
-            'nome' => $this->nome,
-            'descricao' => $this->descricao,
-            'status' => $this->status,
-        ]);
-
-        session()->flash('success', 'Cadastrado');
+        $data = $this->validate();
+        Ambiente::create($data);
+        session()->flash('success', 'Ambiente cadastrado com sucesso.');
         return redirect()->route('ambiente.index');
     }
 
