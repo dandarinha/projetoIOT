@@ -11,6 +11,14 @@ class AmbienteCreate extends Component
     public $descricao;
     public $status;
 
+    protected function rules(): array
+    {
+        return 
+        ['nome' => ['required', 'string', 'max:255'], 
+        'descricao' => ['nullable', 'string'], 
+        'status' => ['boolean']];
+    }
+
     public function store()
     {
         Ambiente::create([

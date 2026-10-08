@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Sensor;
 
+use App\Models\Ambiente;
 use App\Models\Sensor;
 use Livewire\Component;
 
@@ -12,6 +13,7 @@ class SensorEdit extends Component
     public $tipo;
     public $descricao;
     public $status;
+    public $sensor_id;
 
     public function mount($id)
     {
@@ -50,6 +52,6 @@ class SensorEdit extends Component
 
     public function render()
     {
-        return view('livewire.sensor.sensor-edit');
+        return view('livewire.sensor.sensor-edit', ['ambientes' => Ambiente::orderBy('nome')->get()]);
     }
 }
