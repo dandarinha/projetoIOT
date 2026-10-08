@@ -15,14 +15,17 @@ class SensorEdit extends Component
     public $status;
     public $sensor_id;
 
-    public function mount($id)
+
+
+    public function mount(int $id)
     {
         $sensor = Sensor::find($id);
-        if ($sensor == null) {
-            session()->flash('error', 'Não encontrado');
+        if (!$sensor) {
+            session()->flash('error', 'Sensor não encontrado.');
             return redirect()->route('sensor.index');
         }
 
+        $this->sensor_id = $sensor->id;
         $this->ambiente_id = $sensor->ambiente_id;
         $this->codigo = $sensor->codigo;
         $this->tipo = $sensor->tipo;
@@ -30,23 +33,21 @@ class SensorEdit extends Component
         $this->status = $sensor->status;
     }
 
+    protected function rules(): array
+    {
+        return ['ambiente_id' => ['required', 'exists:ambientes,id'], 'codigo' => ['required', 'string', 'max:255', 'unique:sensors,codigo,'.$this->sensor_id], 'tipo' => ['required', 'string', 'max:255'], 'descricao' => ['required', 'string'], 'status' => ['boolean']];
+    }
+
     public function update()
     {
         $sensor = Sensor::find($this->sensor_id);
-        if ($sensor == null) {
-            session()->flash('error', 'Não encontrado');
+        if (!$sensor) {
+            session()->flash('error', 'Sensor não encontrado.');
             return redirect()->route('sensor.index');
-        } 
-        
-        $sensor->ambiente_id = $this->ambiente_id;
-        $sensor->codigo = $this->codigo;
-        $sensor->tipo = $this->tipo;
-        $sensor->descricao = $this->descricao;
-        $sensor->status = $this->status;
+        }
 
-        $sensor->save();
-
-        session()->flash('success','Atualizado');
+        $sensor->update($this->validate());
+        session()->flash('success', 'Sensor atualizado com sucesso.');
         return redirect()->route('sensor.index');
     }
 

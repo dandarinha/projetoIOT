@@ -26,6 +26,10 @@
         <a href="{{ route('dashboard') }}" class="d-flex align-items-center gap-2 text-decoration-none fw-bold fs-5 mb-4 brand">
             <i class="bi bi-cpu-fill"></i> Projeto IoT
         </a>
+<<<<<<< HEAD
+=======
+        <div class="text-uppercase text-secondary small fw-semibold mb-2">Menu principal</div>
+>>>>>>> 6f2a0da7f629a084895bc1f44b04a1197587d6b0
         <nav class="nav nav-pills flex-column gap-1">
             <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                 <i class="bi bi-speedometer2 me-2"></i>Dashboard
@@ -44,7 +48,11 @@
             <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('sidebar').classList.toggle('collapsed')" aria-label="Alternar menu">
                 <i class="bi bi-list"></i>
             </button>
+<<<<<<< HEAD
             <span class="text-secondary small">Monitoramento de Sensores</span>
+=======
+            <span class="text-secondary small">Monitoramento da escola</span>
+>>>>>>> 6f2a0da7f629a084895bc1f44b04a1197587d6b0
         </header>
 
         <main class="container-fluid p-4">
@@ -67,4 +75,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 @livewireScripts
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 6f2a0da7f629a084895bc1f44b04a1197587d6b0

@@ -5,26 +5,25 @@ namespace App\Livewire\Ambiente;
 use App\Models\Ambiente;
 use Livewire\Component;
 
-
-    class Ambienteindex extends Component
+class AmbienteIndex extends Component
 {
-    public $search='';
+    public string $search = '';
 
-    public function delete($id)
+    public function delete(int $id): void
     {
-        $ambiente = Ambiente::find($id);
-
-        if ($ambiente != null) {
+        if ($ambiente = Ambiente::find($id)) {
             $ambiente->delete();
-            session()->flash('success', 'Excluído');
+            session()->flash('success', 'Ambiente excluído com sucesso.');
         }
     }
 
     public function render()
     {
-        $ambientes = Ambiente::where('nome', 'like', '%'.$this->search.'%' )->get();
+        $ambientes = Ambiente::withCount('sensores')
+            ->where('nome', 'like', '%'.$this->search.'%')
+            ->orderBy('nome')
+            ->get();
 
         return view('livewire.ambiente.ambiente-index', compact('ambientes'));
     }
 }
-
