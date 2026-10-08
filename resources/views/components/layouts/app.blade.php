@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'Projeto IoT Escolar' }}</title>
+    <title>{{ $title ?? 'Projeto IoT' }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @livewireStyles
@@ -26,16 +26,13 @@
         <a href="{{ route('dashboard') }}" class="d-flex align-items-center gap-2 text-decoration-none fw-bold fs-5 mb-4 brand">
             <i class="bi bi-cpu-fill"></i> Projeto IoT
         </a>
-<<<<<<< HEAD
-=======
         <div class="text-uppercase text-secondary small fw-semibold mb-2">Menu principal</div>
->>>>>>> 6f2a0da7f629a084895bc1f44b04a1197587d6b0
         <nav class="nav nav-pills flex-column gap-1">
             <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                 <i class="bi bi-speedometer2 me-2"></i>Dashboard
             </a>
             <a class="nav-link {{ request()->routeIs('ambiente.*') ? 'active' : '' }}" href="{{ route('ambiente.index') }}">
-                <i class="bi bi-building me-2"></i>Ambientes
+                <i class="bi bi-door-open"></i> Ambientes
             </a>
             <a class="nav-link {{ request()->routeIs('sensor.*') ? 'active' : '' }}" href="{{ route('sensor.index') }}">
                 <i class="bi bi-broadcast-pin me-2"></i>Sensores
@@ -48,11 +45,7 @@
             <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('sidebar').classList.toggle('collapsed')" aria-label="Alternar menu">
                 <i class="bi bi-list"></i>
             </button>
-<<<<<<< HEAD
             <span class="text-secondary small">Monitoramento de Sensores</span>
-=======
-            <span class="text-secondary small">Monitoramento da escola</span>
->>>>>>> 6f2a0da7f629a084895bc1f44b04a1197587d6b0
         </header>
 
         <main class="container-fluid p-4">
@@ -75,8 +68,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 @livewireScripts
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 6f2a0da7f629a084895bc1f44b04a1197587d6b0

@@ -11,10 +11,6 @@ class AmbienteCreate extends Component
     public string $descricao = '';
     public bool $status = true;
 
-    protected function rules(): array
-    {
-        return ['nome' => ['required', 'string', 'max:255'], 'descricao' => ['nullable', 'string'], 'status' => ['boolean']];
-    }
 
     protected function rules(): array
     {

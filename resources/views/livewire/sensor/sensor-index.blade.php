@@ -2,7 +2,7 @@
 <div>
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
         <div>
-            <h1 class="h3 mb-1">Sensores</h1>
+            <h1 class="h3 mb-1"><i class="bi bi-broadcast-pin me-2"></i> Sensores</h1>
             <p class="text-secondary mb-0">Dispositivos instalados nos ambientes.</p>
         </div><a href="{{ route('sensor.create') }}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Novo
             sensor</a>
